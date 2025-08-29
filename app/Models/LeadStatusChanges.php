@@ -12,8 +12,7 @@ class LeadStatusChanges extends Model
     protected $fillable = [
         'lead_id',
         'status',
-        'appointed_date',
-        'appointed_time',
+        'appointed_date_time',
         'appointed_place',
         'professional_fees',
         'select_mode_of_payment',

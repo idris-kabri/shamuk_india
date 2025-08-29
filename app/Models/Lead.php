@@ -19,7 +19,8 @@ class Lead extends Model
         'city',
         'remarks',
         'documents',
-        'created_by'
+        'created_by',
+        'executive_id',
     ];
 
     public function getClient(){
@@ -28,5 +29,9 @@ class Lead extends Model
 
     public function getServiceType(){
         return $this->belongsTo(ServiceType::class, 'service_type', 'id');
+    }
+
+    public function getExecutive(){
+        return $this->belongsTo(User::class, 'executive_id', 'id');
     }
 }

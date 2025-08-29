@@ -8,7 +8,7 @@
                     @csrf
                     <label class="mb-1 mt-3">Select Status</label>
                     <div class="input-group input-group-outline">
-                        <select class="form-control" wire:model="role" wire:change="roleChange">
+                        <select class="form-control" wire:model="status" wire:change="statusChange">
                             <option value="">Select Status</option>
                             @foreach (config('app.leads') as $key => $lead)
                                 @if($key != 0)
@@ -17,20 +17,15 @@
                             @endforeach
                         </select>
                     </div>
-                    @error('role') 
+                    @error('status') 
                          <span class="text-danger">{{ $message }}</span> 
                          <br>
                     @enderror
 
-                    @if($role != 'Cancelled' && $role != 'Hold')
-                        <label for="" class="form-check-label mt-3">Appointed Date</label>
+                    @if($status != 'Cancelled' && $status != 'Hold')
+                        <label for="" class="form-check-label mt-3">Appointed Date Time</label>
                         <div class="input-group input-group-outline">
-                            <input type="date" class="form-control" wire:model="appointed_date">
-                        </div>
-
-                        <label for="" class="form-check-label mt-3">Appointed time</label>
-                        <div class="input-group input-group-outline">
-                            <input type="time" class="form-control" wire:model="appointed_time">
+                            <input type="datetime-local" class="form-control" wire:model="appointed_date">
                         </div>
 
                         <label for="" class="form-check-label mt-3">Appointed Place</label>
@@ -46,7 +41,8 @@
                             <select class="form-control" wire:model="payment_mode">
                                 <option value="">Select Mode of Payment</option>
                                 <option value="Cash">Cash</option>
-                                <option value="Bank">Bank</option>
+                                <option value="Banker Bill">Banker Bill</option>
+                                <option value="Customer Bill">Customer Bill</option>
                             </select>
                         </div>
                         <label for="" class="form-check-label mt-3">Executive Charges</label>
@@ -54,11 +50,7 @@
                             <input type="integer" class="form-control" wire:model="executive_charges">
                         </div> 
                     @endif
-                    <label for="" class="form-check-label mt-3">Remarks</label>
-                    <div class="input-group input-group-outline">
-                        <input type="text" class="form-control" wire:model="remarks">
-                    </div> 
-                    @if($role != 'Cancelled' && $role != 'Hold')
+                    @if($status != 'Cancelled' && $status != 'Hold')
                         <label class="mb-1 mt-3">Select Executive</label>
                         <div class="input-group input-group-outline">
                             <select class="form-control" wire:model="executive_id">
@@ -75,6 +67,10 @@
                             <input type="text" class="form-control" wire:model="executive_message">
                         </div> 
                     @endif
+                      <label for="" class="form-check-label mt-3">Remarks</label>
+                    <div class="input-group input-group-outline">
+                        <input type="text" class="form-control" wire:model="remarks">
+                    </div> 
 
                     <div class="d-flex justify-content-end mt-5 mb-0">
                         <button type="submit" class="btn btn-primary mb-0">Update</button>

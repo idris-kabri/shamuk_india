@@ -6,6 +6,7 @@ use App\Livewire\Admin\DashboardComponent;
 use App\Livewire\Admin\Lead\Create;
 use App\Livewire\Admin\Lead\Index as LeadIndex;
 use App\Livewire\Admin\Lead\Logs;
+use App\Livewire\Admin\Lead\Myleads;
 use App\Livewire\Admin\Role\Index;
 use App\Livewire\Admin\ServiceType\Index as ServiceTypeIndex;
 use App\Livewire\Admin\User\Index as UserIndex;
@@ -41,5 +42,6 @@ Route::middleware('auth')->group(function () {
       Route::get('index', LeadIndex::class)->name('index');
       Route::get('create', Create::class)->name('create');
       Route::get('logs/{id}', Logs::class)->name('logs');
+      Route::get('mine', Myleads::class)->name('mine');
    });
 });

@@ -83,6 +83,14 @@
                         </a>
                     </li>
                 @endif
+                @if (Auth::user()->role_id != 1 && Auth::user()->role_id  != 3 && Auth::user()->role_id != 4 && Auth::user()->role_id != 5)
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="/leads/mine">
+                            <i class="material-symbols-rounded opacity-5">view_in_ar</i>
+                            <span class="nav-link-text ms-1">My leads</span>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="javascript:void(0);" onclick="logoutFunction(event)">
                         <i class="material-symbols-rounded opacity-5">view_in_ar</i>

@@ -31,7 +31,7 @@ class Index extends Component
         $user = User::find($this->id);
         $user->is_approved = 1;
         $user->role_id = $this->role;
-        if($this->role == 2){
+        if($this->role != '1' && $this->role != '3' && $this->role != '4' && $this->role != '5'){
             $user->assigned_products = json_encode($this->product_names);
         }
         $user->save();
@@ -40,7 +40,7 @@ class Index extends Component
     }
 
     public function assignRole(){
-        if($this->role == "2"){
+        if($this->role != '1' && $this->role != '3' && $this->role != '4' && $this->role != '5'){
             $this->dispatch('displayProducts');
         }else{
             $this->dispatch('hideProducts');

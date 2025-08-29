@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('remarks')->nullable();
             $table->longText('documents')->nullable();
-            $table->integer('status')->default(0)->comment('0 = pending, 1 = approved, 2 = rejected');
+            $table->integer('status')->default(0)->comment('0 = Request Received, 1 = Inspection Scheduled, 2 = Hold, 3 = Inspection Rescheduled, 4 = Cancelled, 5 = Executive Appointed, 6 = Physical Inspection Done, 7 = Documents Pending, 8 = Document & Payment Awaited, 9 = Report Under Analysis, 10 = Payment Awaited');
             $table->timestamps();
 
             $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');

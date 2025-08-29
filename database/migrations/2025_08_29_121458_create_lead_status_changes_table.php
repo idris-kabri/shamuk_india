@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id(); 
             $table->unsignedBigInteger('lead_id'); 
             $table->string('status'); 
-            $table->date('appointed_date')->nullable(); 
-            $table->time('appointed_time')->nullable(); 
+            $table->dateTime('appointed_date_time')->nullable();
             $table->string('appointed_place')->nullable(); 
             $table->string('professional_fees')->nullable(); 
             $table->string('select_mode_of_payment')->nullable(); 
