@@ -4,6 +4,7 @@
              <div class="card my-4">
                  <div class="card-header d-flex justify-content-between align-items-center">
                      <h4>Users</h4>
+                      <a href="{{route('users.create')}}" class="btn btn-primary m-0"> + Create</a>
                  </div>
                  <div class="card-body px-0 pb-2">
                      <div class="table-responsive p-0">
@@ -67,11 +68,14 @@
                                                      </div>
                                                  </div>
                                              </td>
-                                             <td class="text-center">
+                                             <td class="text-center"> 
+                                                <a href="{{route('users.edit',$user->id)}}" class="text-info"><i class="fa fa-eye"></i></a>
+                                                <br>
                                                  @if ($user->is_approved == 0)
                                                      <button type="button" class="btn btn-primary"
                                                          wire:click="triggerPopup({{ $user->id }})">Approve</button>
-                                                 @endif
+                                                 @endif 
+                                                 
                                              </td>
                                          </tr>
                                      @endforeach

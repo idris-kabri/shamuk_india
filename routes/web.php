@@ -10,6 +10,9 @@ use App\Livewire\Admin\Lead\Myleads;
 use App\Livewire\Admin\Role\Index;
 use App\Livewire\Admin\ServiceType\Index as ServiceTypeIndex;
 use App\Livewire\Admin\User\Index as UserIndex;
+use App\Livewire\Admin\User\Create as UserCreate;
+use App\Livewire\Admin\User\Edit as UserEdit;
+use App\Livewire\Admin\User\Profile as UserProfile;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,6 +35,9 @@ Route::middleware('auth')->group(function () {
 
    Route::prefix('users')->name('users.')->group(function () {
       Route::get('index', UserIndex::class)->name('index');
+      Route::get('create', UserCreate::class)->name('create');
+      Route::get('edit/{id}', UserEdit::class)->name('edit');
+      Route::get('profile', UserProfile::class)->name('profile');
    });
 
    Route::prefix('service-type')->name('service-type.')->group(function () {
