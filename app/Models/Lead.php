@@ -34,4 +34,8 @@ class Lead extends Model
     public function getExecutive(){
         return $this->belongsTo(User::class, 'executive_id', 'id');
     }
+
+    public function getCity(){
+        return $this->belongsTo(City::class, 'city', 'id');
+    }
 }

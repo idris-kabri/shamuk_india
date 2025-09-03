@@ -15,10 +15,14 @@ class LeadStatusChanges extends Model
         'appointed_date_time',
         'appointed_place',
         'professional_fees',
-        'select_mode_of_payment',
         'executive_charges',
         'remarks',
-        'select_executive',
-        'executive_message',
-    ];
+        'executive_message', 
+        'executive_id',
+        'mode_of_payment'
+    ]; 
+
+    public function getExecutive(){
+        return $this->belongsTo(User::class, 'executive_id', 'id');
+    }
 }

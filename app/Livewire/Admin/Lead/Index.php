@@ -55,10 +55,10 @@ class Index extends Component
         $leadStatus->appointed_date_time = $this->appointed_date;
         $leadStatus->appointed_place = $this->appointed_place;
         $leadStatus->professional_fees = $this->professional_fees;
-        $leadStatus->select_mode_of_payment = $this->payment_mode;
+        $leadStatus->mode_of_payment = $this->payment_mode;
         $leadStatus->executive_charges = $this->executive_charges;
         $leadStatus->remarks = $this->remarks;
-        $leadStatus->select_executive = $this->executive_id;
+        $leadStatus->executive_id = $this->executive_id;
         $leadStatus->executive_message = $this->executive_message;
         $leadStatus->save();
 
