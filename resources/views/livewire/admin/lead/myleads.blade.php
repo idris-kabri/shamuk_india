@@ -1,5 +1,5 @@
  <div class="container-fluid py-2">
-     {{-- @include('livewire.admin.lead.change-status-popup') --}}
+     @include('livewire.admin.lead.includes.add-document-popup')
      <div class="row">
          <div class="col-12">
              <div class="card my-4">
@@ -34,86 +34,96 @@
                              </thead>
                              <tbody>
                                  @if ($leads->count() > 0)
+                                 @php
+                                 $i = 1;
+                                 @endphp
+                                 @foreach ($leads as $lead)
+                                 <tr>
+                                     <td>
+                                         <div class="d-flex px-2 py-1">
+                                             <div class="d-flex flex-column justify-content-center">
+                                                 <h6 class="mb-0 text-sm">
+                                                     {{ config('app.lead_suffix') }}{{ str_pad($lead->id, 4, 0, STR_PAD_LEFT) }}
+                                                 </h6>
+                                             </div>
+                                         </div>
+                                     </td>
+                                     <td>
+                                         <div class="d-flex px-2 py-1">
+                                             <div class="d-flex flex-column justify-content-center">
+                                                 <h6 class="mb-0 text-sm">
+                                                     {{ \Carbon\Carbon::parse($lead->created_at)->format('d-m-Y') }}
+                                                 </h6>
+                                             </div>
+                                         </div>
+                                     </td>
                                      @php
-                                         $i = 1;
+                                     $start = \Carbon\Carbon::parse($lead->created_at);
+                                     $end = \Carbon\Carbon::now();
+                                     $duration = $start->diffInHours($end);
                                      @endphp
-                                     @foreach ($leads as $lead)
-                                         <tr>
-                                             <td>
-                                                 <div class="d-flex px-2 py-1">
-                                                     <div class="d-flex flex-column justify-content-center">
-                                                         <h6 class="mb-0 text-sm">
-                                                             {{ config('app.lead_suffix') }}{{ str_pad($lead->id, 4, 0, STR_PAD_LEFT) }}
-                                                         </h6>
-                                                     </div>
-                                                 </div>
-                                             </td>
-                                             <td>
-                                                 <div class="d-flex px-2 py-1">
-                                                     <div class="d-flex flex-column justify-content-center">
-                                                         <h6 class="mb-0 text-sm">
-                                                             {{ \Carbon\Carbon::parse($lead->created_at)->format('d-m-Y') }}
-                                                         </h6>
-                                                     </div>
-                                                 </div>
-                                             </td>
-                                             @php
-                                                 $start = \Carbon\Carbon::parse($lead->created_at);
-                                                 $end = \Carbon\Carbon::now();
-                                                 $duration = $start->diffInHours($end);
-                                             @endphp
-                                             <td class="text-center font-weight-bolder text-sm">
-                                                 {{ number_format($duration, 2) }}</td>
-                                             <td>
-                                                 <div class="d-flex px-2 py-1">
-                                                     <div class="d-flex flex-column justify-content-center">
-                                                         <h6 class="mb-0 text-sm">{{ $lead->getClient->name }}</h6>
-                                                     </div>
-                                                 </div>
-                                             </td>
-                                             <td>
-                                                 <div class="d-flex px-2 py-1">
-                                                     <div class="d-flex flex-column justify-content-center">
-                                                         <h6 class="mb-0 text-sm">
-                                                             {{ $lead->getServiceType->service_type_parent_id }}</h6>
-                                                     </div>
-                                                 </div>
-                                             </td>
-                                             <td>
-                                                 <div class="d-flex px-2 py-1">
-                                                     <div class="d-flex flex-column justify-content-center">
-                                                         <h6 class="mb-0 text-sm">{{ $lead->purpose }}</h6>
-                                                     </div>
-                                                 </div>
-                                             </td>
-                                             <td>
-                                                 <div class="d-flex px-2 py-1">
-                                                     <div class="d-flex flex-column justify-content-center">
-                                                         <h6 class="mb-0 text-sm">{{ $lead->borrower_name }}</h6>
-                                                     </div>
-                                                 </div>
-                                             </td>
-                                             <td class="">
-                                                 <div class="d-flex px-2 py-1">
-                                                     <div class="d-flex flex-column justify-content-center">
-                                                         <span
-                                                             class="badge badge-sm bg-gradient-{{ config('app.leads_color')[$lead->status] }} cursor-pointer blink"
-                                                             data-bs-toggle="modal"
-                                                             data-bs-target="#leadStatusSaveModal"
-                                                             wire:click="setLead({{ $lead->id }})">{{ config('app.leads')[$lead->status] }}</span>
-                                                     </div>
-                                                 </div>
-                                             </td>
-                                             <td class="text-center">
-                                                 <a href="{{ route('leads.logs', $lead->id) }}"
-                                                     class="text-info mb-0 me-2"><i class="fas fa-eye"></i></a>
-                                             </td>
-                                         </tr>
-                                     @endforeach
+                                     <td class="text-center font-weight-bolder text-sm">
+                                         {{ number_format($duration, 2) }}
+                                     </td>
+                                     <td>
+                                         <div class="d-flex px-2 py-1">
+                                             <div class="d-flex flex-column justify-content-center">
+                                                 <h6 class="mb-0 text-sm">{{ $lead->getClient->name }}</h6>
+                                             </div>
+                                         </div>
+                                     </td>
+                                     <td>
+                                         <div class="d-flex px-2 py-1">
+                                             <div class="d-flex flex-column justify-content-center">
+                                                 <h6 class="mb-0 text-sm">
+                                                     {{ $lead->getServiceType->service_type_parent_id }}
+                                                 </h6>
+                                             </div>
+                                         </div>
+                                     </td>
+                                     <td>
+                                         <div class="d-flex px-2 py-1">
+                                             <div class="d-flex flex-column justify-content-center">
+                                                 <h6 class="mb-0 text-sm">{{ $lead->purpose }}</h6>
+                                             </div>
+                                         </div>
+                                     </td>
+                                     <td>
+                                         <div class="d-flex px-2 py-1">
+                                             <div class="d-flex flex-column justify-content-center">
+                                                 <h6 class="mb-0 text-sm">{{ $lead->borrower_name }}</h6>
+                                             </div>
+                                         </div>
+                                     </td>
+                                     <td class="lead-status-td">
+                                         <div class="d-flex px-2 py-1">
+                                             <div class="d-flex flex-column justify-content-center">
+                                                 <span
+                                                     class="badge badge-sm bg-gradient-{{ config('app.leads_color')[$lead->status] }} cursor-pointer blink"
+                                                    >{{ config('app.leads')[$lead->status] }}</span>
+                                             </div>
+                                         </div>
+                                     </td>
+                                     <td class="text-center">
+                                         <div class="">
+                                             <a href="{{ route('leads.logs', $lead->id) }}"
+                                                 class="text-info mb-0 me-1"><i class="fas fa-eye"></i></a>
+                                             <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                 class="text-info mb-0 me-1" wire:click.prevent="settype('Documents', '{{$lead->id}}')"><i class="fas fa-file-import"></i></a>
+                                         </div>
+                                         <div class="">
+                                             <a href="javascript:void(0);" wire:click.prevent="settype('Image', '{{$lead->id}}')" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                 class="text-info mb-0 me-1"><i class="fas fa-camera"></i></a>
+                                             <a href="javascript:void(0);" wire:click.prevent="settype('PDF', '{{$lead->id}}')" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                 class="text-info mb-0 me-1"><i class="fas fa-file-pdf"></i></a>
+                                         </div>
+                                     </td>
+                                 </tr>
+                                 @endforeach
                                  @else
-                                     <tr>
-                                         <td colspan="9" class="text-center">No Current Leads are there</td>
-                                     </tr>
+                                 <tr>
+                                     <td colspan="9" class="text-center">No Current Leads are there</td>
+                                 </tr>
                                  @endif
                              </tbody>
                          </table>
@@ -163,12 +173,12 @@
              </div>
          </div>
      </footer>
-     
+
  </div>
  @section('scripts')
-     <script>
-         window.addEventListener('leadStatusSaveModal-model-close', event => {
-             $('#leadStatusSaveModal').modal('hide');
-         });
-     </script>
+ <script>
+     window.addEventListener('leadStatusSaveModal-model-close', event => {
+         $('#leadStatusSaveModal').modal('hide');
+     });
+ </script>
  @endsection

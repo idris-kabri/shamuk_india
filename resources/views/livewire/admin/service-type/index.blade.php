@@ -14,7 +14,7 @@
                              <thead>
                                  <tr>
                                      <th class="text-uppercase text-xs font-weight-bolder">
-                                         Department</th>
+                                         Product</th>
                                      <th class="text-uppercase text-xs font-weight-bolder">
                                          Services</th>
                                      <th
@@ -69,7 +69,7 @@
                      <form method="POST" wire:submit.prevent="createServiceType">
                          @csrf
                          <div class="input-group input-group-outline mt-4">
-                             <label class="form-label">Department Name</label>
+                             <label class="form-label">Product Name</label>
                              <input type="text" class="form-control" wire:model="name" required>
                          </div>
 

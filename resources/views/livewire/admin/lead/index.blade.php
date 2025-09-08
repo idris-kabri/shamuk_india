@@ -1,5 +1,5 @@
  <div class="container-fluid py-2">
-     @include('livewire.admin.lead.change-status-popup')
+     @include('livewire.admin.lead.includes.change-status-popup')
      <div class="row">
          <div class="col-12">
              <div class="card my-4">
@@ -161,5 +161,5 @@
      window.addEventListener('leadStatusSaveModal-model-close', event => {
          $('#leadStatusSaveModal').modal('hide');
      });
- </script> 
+ </script>
  @endsection

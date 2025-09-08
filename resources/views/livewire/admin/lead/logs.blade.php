@@ -1,78 +1,4 @@
  <div class="container-fluid py-2">
-     {{--<div class="row">
-         <div class="col-12">
-             <div class="card my-4">
-                 <div class="card-header d-flex justify-content-between align-items-center">
-                     <h4>Leads Logs</h4>
-                 </div>
-                 <div class="card-body px-0 pb-2">
-                     <div class="table-responsive p-0">
-                         <table class="table align-items-center mb-0">
-                             <thead>
-                                 <tr>
-                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                         Lead Id</th>
-                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                         Action Time</th>
-                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                         Message</th>
-                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                         Executer Name</th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                                 @if ($logs->count() > 0)
-                                 @php
-                                 $i = 1;
-                                 @endphp
-                                 @foreach ($logs as $log)
-                                 <tr>
-                                     <td>
-                                         <div class="d-flex px-2 py-1">
-                                             <div class="d-flex flex-column justify-content-center">
-                                                 <h6 class="mb-0 text-sm">{{ config('app.lead_suffix') }}{{ str_pad($log->lead_id, 4, 0, STR_PAD_LEFT) }}</h6>
-                                             </div>
-                                         </div>
-                                     </td>
-                                     <td>
-                                         <div class="d-flex px-2 py-1">
-                                             <div class="d-flex flex-column justify-content-center">
-                                                 <h6 class="mb-0 text-sm">{{ \Carbon\Carbon::parse($log->created_at)->format('d-m-Y h:i:s a') }}</h6>
-                                             </div>
-                                         </div>
-                                     </td>
-                                     <td>
-                                         <div class="d-flex px-2 py-1">
-                                             <div class="d-flex flex-column justify-content-center">
-                                                 <h6 class="mb-0 text-sm">{{ $log->message }}</h6>
-                                             </div>
-                                         </div>
-                                     </td>
-                                     <td>
-                                         <div class="d-flex px-2 py-1">
-                                             <div class="d-flex flex-column justify-content-center">
-                                                 <h6 class="mb-0 text-sm">{{ $log->getExecuter->name }}</h6>
-                                             </div>
-                                         </div>
-                                     </td>
-                                 </tr>
-                                 @endforeach
-                                 @else
-                                 <tr>
-                                     <td colspan="9" class="text-center">No Logs found</td>
-                                 </tr>
-                                 @endif
-                             </tbody>
-                         </table>
-                     </div>
-                     <div class="d-flex justify-content-end">
-                         {{ $logs->links() }}
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>--}}
-
      <!-- customer details div  -->
      <div class="row">
          <div class="col-md-11 mx-auto">
@@ -135,14 +61,14 @@
                                  </div>
 
                                  <div class="d-flex justify-content-between align-items-center border-division py-3">
-                                     <span class="mb-0 lead-info-first-span">Documents</span> 
-                                     @php 
-                                        $documents = json_decode($leads->documents,true);
-                                     @endphp 
+                                     <span class="mb-0 lead-info-first-span">Documents</span>
+                                     @php
+                                     $documents = json_decode($leads->documents,true);
+                                     @endphp
                                      @foreach($documents as $document)
-                                        <a href="{{Storage::url($document)}}" target="_blank"><span class="mb-0 lead-info-second-span"> View <i
-                                                    class="fas fa-eye"></i></span></a> 
-                                    @endforeach
+                                     <a href="{{Storage::url($document)}}" target="_blank"><span class="mb-0 lead-info-second-span"> View <i
+                                                 class="fas fa-eye"></i></span></a>
+                                     @endforeach
                                  </div>
 
                                  <div class="d-flex justify-content-between align-items-center border-division py-3">
@@ -151,10 +77,10 @@
                                  </div>
 
                                  <div class="d-flex justify-content-between align-items-center border-division py-3">
-                                     <span class="mb-0 lead-info-first-span">Status</span> 
-                                     @php 
-                                        $status = config('app.leads'); 
-                                        $leadStatusName = $status[$leads->status];
+                                     <span class="mb-0 lead-info-first-span">Status</span>
+                                     @php
+                                     $status = config('app.leads');
+                                     $leadStatusName = $status[$leads->status];
                                      @endphp
                                      <span class="mb-0 lead-info-second-span">{{$leadStatusName}}</span>
                                  </div>
@@ -194,32 +120,32 @@
                                          Executer Id</th>
                                  </tr>
                              </thead>
-                             <tbody> 
-                                @if ($logs->count() > 0)
-                                    @foreach ($logs as $log)
-                                        <tr>
-                                            <td>
-                                                {{ config('app.lead_suffix') }}{{ str_pad($log->lead_id, 4, 0, STR_PAD_LEFT) }}
-                                            </td>
-                                            <td>
-                                                {{ \Carbon\Carbon::parse($log->created_at)->format('d-m-Y h:i:s a') }}
-                                            </td>
-                                            <td>
-                                                {{ $log->message }}
-                                            </td>
-                                            <td>
-                                                {{ $log->getExecuter->name }}
-                                            </td>
-                                        </tr> 
-                                    @endforeach 
-                                @else
+                             <tbody>
+                                 @if ($logs->count() > 0)
+                                 @foreach ($logs as $log)
                                  <tr>
-                                    <td colspan="9" class="text-center">No Logs found</td>
+                                     <td>
+                                         {{ config('app.lead_suffix') }}{{ str_pad($log->lead_id, 4, 0, STR_PAD_LEFT) }}
+                                     </td>
+                                     <td>
+                                         {{ \Carbon\Carbon::parse($log->created_at)->format('d-m-Y h:i:s a') }}
+                                     </td>
+                                     <td>
+                                         {{ $log->message }}
+                                     </td>
+                                     <td>
+                                         {{ $log->getExecuter->name }}
+                                     </td>
                                  </tr>
-                                @endif
+                                 @endforeach
+                                 @else
+                                 <tr>
+                                     <td colspan="9" class="text-center">No Logs found</td>
+                                 </tr>
+                                 @endif
                              </tbody>
                          </table>
-                     </div> 
+                     </div>
                      <div class="d-flex justify-content-end">
                          {{ $logs->links() }}
                      </div>
@@ -228,6 +154,7 @@
          </div>
      </div>
 
+     @if(auth()->user()->role_id == 1)
      <div class="row">
          <div class="col-11 mx-auto">
              <div class="card custom-card my-4">
@@ -263,57 +190,57 @@
                                          Created At</th>
                                  </tr>
                              </thead>
-                             <tbody>  
-                                @if ($lead_status->count() > 0)
-                                    @foreach($lead_status as $status)
-                                        <tr>
-                                            <td>
-                                                {{ config('app.lead_suffix') }}{{ str_pad($status->lead_id, 4, 0, STR_PAD_LEFT) }}
-                                            </td>
-                                            <td> 
-                                                @php 
-                                                    $loop_lead_status = config('app.leads'); 
-                                                    $loop_lead_status_name = $loop_lead_status[$status->status];
-                                                 @endphp
-                                                {{$loop_lead_status_name}}
-                                            </td>
-                                            <td>
-                                                {{$status->appointed_date_time}}
-                                            </td>
-                                            <td>
-                                                {{$status->appointed_place}}
-                                            </td>
-                                            <td>
-                                                {{$status->professional_fees}}rs
-                                            </td>
-                                            <td>
-                                               {{$status->mode_of_payment}}
-                                            </td>
-                                            <td>
-                                                {{$status->executive_charges}} rs
-                                            </td>
-                                            <td>
-                                                {{$status->remarks}}
-                                            </td>
-                                            <td>
-                                                {{$status->getExecutive->name}}
-                                            </td>
-                                            <td>
-                                                {{$status->executive_message}}
-                                            </td>
-                                            <td>
-                                                {{$status->created_at}}
-                                            </td>
-                                        </tr> 
-                                    @endforeach 
-                                @else
+                             <tbody>
+                                 @if ($lead_status->count() > 0)
+                                 @foreach($lead_status as $status)
                                  <tr>
-                                    <td colspan="12" class="text-center">No Lead Status found!</td>
+                                     <td>
+                                         {{ config('app.lead_suffix') }}{{ str_pad($status->lead_id, 4, 0, STR_PAD_LEFT) }}
+                                     </td>
+                                     <td>
+                                         @php
+                                         $loop_lead_status = config('app.leads');
+                                         $loop_lead_status_name = $loop_lead_status[$status->status];
+                                         @endphp
+                                         {{$loop_lead_status_name}}
+                                     </td>
+                                     <td>
+                                         {{$status->appointed_date_time}}
+                                     </td>
+                                     <td>
+                                         {{$status->appointed_place}}
+                                     </td>
+                                     <td>
+                                         {{$status->professional_fees}}rs
+                                     </td>
+                                     <td>
+                                         {{$status->mode_of_payment}}
+                                     </td>
+                                     <td>
+                                         {{$status->executive_charges}} rs
+                                     </td>
+                                     <td>
+                                         {{$status->remarks}}
+                                     </td>
+                                     <td>
+                                         {{$status->getExecutive->name}}
+                                     </td>
+                                     <td>
+                                         {{$status->executive_message}}
+                                     </td>
+                                     <td>
+                                         {{$status->created_at}}
+                                     </td>
                                  </tr>
-                                @endif
+                                 @endforeach
+                                 @else
+                                 <tr>
+                                     <td colspan="12" class="text-center">No Lead Status found!</td>
+                                 </tr>
+                                 @endif
                              </tbody>
                          </table>
-                     </div> 
+                     </div>
                      <div class="d-flex justify-content-end">
                          {{ $lead_status->links() }}
                      </div>
@@ -321,6 +248,7 @@
              </div>
          </div>
      </div>
+     @endif
 
      <footer class="footer py-4  ">
          <div class="container-fluid">
